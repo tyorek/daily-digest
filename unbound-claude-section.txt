@@ -1,0 +1,14 @@
+### Unbound resolvers
+The Homepage container queries each Unbound resolver directly every minute and keeps 24 hours of
+results: secnodetls and tertnodetls (DoT on 853, the upstreams of primenodetls) and bunode1 and
+bunode2 (plain DNS on 53, the upstreams of buauth). Per node: `status`, response `time`,
+`uptime_24h`, `last_ok`, and `error` when it failed. OK means NOERROR with an answer.
+- Any node not OK right now: flag it and say which Technitium server just lost that upstream.
+  Both upstreams of the same Technitium server down at once is the most serious case: that server
+  is left with only its other forwarders.
+- `uptime_24h` below about 99%: mention it; below 95%, flag it.
+- `REFUSED`: Unbound answered but doesn't allow the probe's address (192.168.99.8). It's a probe
+  configuration gap, not an outage; mention it, don't flag it.
+- `checked` more than about 10 minutes before the digest run: the probe itself has stopped. Flag it.
+- On a healthy day this is one line: all four OK, with the 24-hour uptime.
+

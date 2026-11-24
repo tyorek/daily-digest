@@ -1,0 +1,45 @@
+/* Homepage custom theme: pure black, Monster-green (#95d600) accents.
+   Lives in /opt/homepage/app/config/custom.css; loaded at runtime, no rebuild needed.
+   Pair with settings.yaml: theme: dark, color: neutral (pure greys, no blue tint). */
+
+html.dark {
+  --bg-color: 0 0 0;
+  --accent: 149 214 0;
+  --scrollbar-thumb: rgb(149 214 0 / 0.35);
+  --scrollbar-track: #000;
+}
+html.dark body { background-color: #000; }
+html.dark ::selection { background: rgb(var(--accent) / 0.35); }
+
+/* Group and bookmark headings */
+html.dark .service-group-name,
+html.dark .bookmark-group-name {
+  color: rgb(var(--accent));
+  letter-spacing: 0.02em;
+}
+
+/* Service tiles: near-black with a faint green edge that lights up on hover */
+html.dark .service-card {
+  background-color: #0a0a0a;
+  border: 1px solid rgb(var(--accent) / 0.14);
+  box-shadow: none;
+}
+html.dark .service-card:hover {
+  background-color: #101010;
+  border-color: rgb(var(--accent) / 0.6);
+  box-shadow: 0 0 14px rgb(var(--accent) / 0.18);
+}
+html.dark .service-name { color: #f5f5f5; }
+html.dark .service-description { color: #a3a3a3; }
+
+/* Widget stat blocks inside tiles: white value, green label */
+html.dark .service-block { background-color: #141414; }
+html.dark .service-block-value { color: #ffffff; font-weight: 500; }
+html.dark .service-block-label { color: rgb(var(--accent)); opacity: 1; }
+
+/* Bookmarks */
+html.dark .bookmark-icon { background-color: #141414; color: rgb(var(--accent)); }
+html.dark .bookmark-name { color: #f5f5f5; }
+html.dark .bookmark-description { color: #a3a3a3; }
+html.dark .bookmark a:hover .bookmark-name,
+html.dark .bookmark:hover .bookmark-name { color: rgb(var(--accent)); }
